@@ -107,18 +107,14 @@ class Download(object):
         }
     
     def download(self):
-        
         download_object = youtube_dl.YoutubeDL(self.song_opts)
-        
         info = download_object.extract_info(self.url, download=False)
         song_name = info.get('title', None)
         window.label_done.setText(song_name)
-
         return download_object.download([self.url])
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
-    #window.setWindowIcon(QtGui.QIcon("logo.ico"))
     sys.exit(app.exec_())
